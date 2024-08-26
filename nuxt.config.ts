@@ -2,7 +2,9 @@
 export default defineNuxtConfig({
   compatibilityDate: '2024-04-03',
   devtools: { enabled: true },
-  css: ["@/assets/scss/global.scss"],
+  ssr: false,
+  css: ["@/assets/scss/global.scss", "vue3-carousel/dist/carousel.css"],
+
   vite: {
     css: {
       preprocessorOptions: {
@@ -12,4 +14,9 @@ export default defineNuxtConfig({
       },
     },
   },
+
+  modules: ['vue3-carousel-nuxt'],
+  carousel: {
+    prefix: 'carousel',
+  }
 })

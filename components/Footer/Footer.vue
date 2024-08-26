@@ -1,8 +1,9 @@
 <template>
-    <div>
-        <h1>Footer</h1>
-        <p>Footer</p>
-    </div>
+    <footer>
+       <div class="container">
+            by Wesley de Santana
+       </div>
+    </footer>
 </template>
 
 <script>
