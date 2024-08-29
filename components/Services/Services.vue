@@ -1,10 +1,12 @@
 <template>
     <div class="container">
-      <Carousel autoplay="5000" :items-to-show="4" :wrap-around="true">
+      <Carousel :autoplay="5000" :items-to-show="itemsToShow" :wrap-around="true">
         <Slide v-for="item in items" :key="item.id">
         <div class="carousel__item">
-            <img src="/assets/images/barber.png" :alt="item.title" />
-            <span>{{ item.title }}</span>
+            <img :src="item.image" :alt="item.title" />
+            <span>
+                <h3>{{ item.title }}</h3>   
+            </span>
             <button>Saiba Mais</button>
         </div>
         </Slide>
@@ -28,26 +30,64 @@ export default defineNuxtComponent({
     Navigation,
   },
   setup() {
+    
     const items = ref([
       {
         id: 1,
-        title: 'Corte de cabelo normal',
-        image: '#',
+        title: 'Barboterapia',
+        image: './images/oleo-de-barba.png',
       },
       {
         id: 2,
-        title: 'Facial Masculino',
-        image: '#',
+        title: 'Botox ou Progressiva',
+        image: './images/cadeira.png',
       },
       {
         id: 3,
-        title: 'Barbear Real',
-        image: '#',
+        title: 'Coloração',
+        image: './images/escova-de-barbear.png',
       },
+      {
+        id: 4,
+        title: 'Corte',
+        image: './images/barbearia.png',
+      },
+      {
+        id: 5,
+        title: 'Corte e Barba',
+        image: './images/lamina-de-barbear.png',
+      },
+       {
+        id: 6,
+        title: 'Corte Barba e Limpeza de Pele',
+        image: './images/bigode.png',
+      }
     ]);
+    
+    const itemsToShow = ref(3);
 
+    const updateItemsToShow = () => {
+      const screenWidth = window.innerWidth;
+      if (screenWidth < 768) {
+        itemsToShow.value = 1;
+      } else if (screenWidth < 1024) {
+        itemsToShow.value = 2;
+      } else {
+        itemsToShow.value = 3;
+      }
+    };
+
+    onMounted(() => {
+      updateItemsToShow();
+      window.addEventListener('resize', updateItemsToShow);
+    });
+
+    onBeforeUnmount(() => {
+      window.removeEventListener('resize', updateItemsToShow);
+    });
     return {
-      items
+      items,
+      itemsToShow
     }
   },
 })

@@ -15,7 +15,7 @@ export default defineNuxtConfig({
     },
   },
 
-  modules: ['vue3-carousel-nuxt'],
+  modules: ['vue3-carousel-nuxt', '@vueuse/nuxt'],
   carousel: {
     prefix: 'carousel',
   }
